@@ -26,7 +26,8 @@ client.connect(err => {
     const generaluserCollection = client.db("spicydata").collection("general");
 
     // Create Shopkeeper user
-    server.post('/vendor/signup', cors(), (req, res) => {
+    server.post('/vendor/signup', (req, res) => {
+        res.setHeader('Access-Control-Allow-Origin', 'https://spicy-shop.herokuapp.com/');
         const shopkeeperUser = req.body;
         shopkeeperCollection.insertOne(shopkeeperUser)
             .then(result => res.send(result))
