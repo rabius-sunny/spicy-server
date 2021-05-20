@@ -7,10 +7,10 @@ const bodyParser = require('body-parser');
 
 require('dotenv').config()
 
-const PORT = process.env.PORT || 4040;
-
 server.use(cors());
 server.use(bodyParser.json());
+
+const PORT = process.env.PORT || 4040;
 
 server.get('/', (req, res) => {
     res.send('Root Derectorys')
@@ -26,7 +26,7 @@ client.connect(err => {
     const generaluserCollection = client.db("spicydata").collection("general");
 
     // Create Shopkeeper user
-    server.post('/vendor/signup', (req, res) => {
+    server.post('/vendor/signup', cors(), (req, res) => {
         const shopkeeperUser = req.body;
         shopkeeperCollection.insertOne(shopkeeperUser)
             .then(result => res.send(result))
