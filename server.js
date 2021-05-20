@@ -21,6 +21,7 @@ const uri = `mongodb+srv://users:${process.env.PASS}@cluster0.jat59.mongodb.net/
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
     console.log(err ? err : 'Database Connected Successfully')
+
     const productsCollection = client.db("spicydata").collection("products");
     const shopkeeperCollection = client.db("spicydata").collection("shopkeepers");
     const generaluserCollection = client.db("spicydata").collection("general");
